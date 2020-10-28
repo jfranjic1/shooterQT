@@ -8,6 +8,7 @@ class Player: public QGraphicsRectItem{
 public:
     Player();
     void keyPressEvent(QKeyEvent *event);
+
 };
 
 #endif // PLAYER_H

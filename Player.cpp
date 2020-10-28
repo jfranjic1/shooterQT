@@ -1,6 +1,8 @@
 #include "Player.h"
 #include <QGraphicsRectItem>
 #include <QGraphicsScene>
+#include <Bullet.h>
+
 
 Player::Player(){
     int size=40;
@@ -11,10 +13,17 @@ Player::Player(){
 
 void Player::keyPressEvent(QKeyEvent *event){
     if(event->key()==Qt::Key_Left){
-    this->setX(this->x()-5);
+    this->setX(this->x()-10);
     }
     if(event->key()==Qt::Key_Right){
-    this->setX(this->x()+5);
+    this->setX(this->x()+10);
+    }
+    if(event->key()==Qt::Key_Space){
+    Bullet *b = new Bullet();
+    this->scene()->addItem(b);
+    b->setPos(this->x()+20-1.5,this->y()-10);
     }
 }
+
+
 
