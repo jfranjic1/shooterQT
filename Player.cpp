@@ -10,25 +10,26 @@ Player::Player(){
     this->setRect(0,0,size,size);
     this->timerSpeed=20;
     this->shootSpeed=100;
-    shootTimer->setSingleShot(true);
+
     this->setPos(width/2-size/2, height-size);
     connect(leftTimer, SIGNAL(timeout()),this, SLOT(goLeft()));
     connect(rightTimer, SIGNAL(timeout()),this, SLOT(goRight()));
+    connect(shootTimer, SIGNAL(timeout()),this, SLOT(shoot()));
 
 }
 
 void Player::keyPressEvent(QKeyEvent *event){
+    if(event->key()==Qt::Key_Space && !this->shootTimer->isActive()){
+       this->shootTimer->setSingleShot(false);
+       this->shootTimer->start(this->shootSpeed);
+    }
     if(event->key()==Qt::Key_Left){
        this->leftTimer->start(timerSpeed);
     }
-    if(event->key()==Qt::Key_Right){
+     if(event->key()==Qt::Key_Right){
        this->rightTimer->start(timerSpeed);
     }
-    if(event->key()==Qt::Key_Space && !this->shootTimer->isActive()){
-        shoot();
-        this->shootTimer->setSingleShot(true);
-        this->shootTimer->start(this->shootSpeed);
-    }
+
 }
 
 void Player::keyReleaseEvent(QKeyEvent *event){
@@ -37,6 +38,9 @@ void Player::keyReleaseEvent(QKeyEvent *event){
     }
     if(event->key()==Qt::Key_Right){
         this->rightTimer->stop();
+    }
+    if(event->key()==Qt::Key_Space){
+       this->shootTimer->stop();
     }
 
 }
