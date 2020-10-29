@@ -9,6 +9,7 @@
 
 Bullet::Bullet(){
     this->setRect(0,0,3,10);
+    this->setBrush(Qt::black);
     this->t = new QTimer();
     connect(this->t,SIGNAL(timeout()),this,SLOT(move()));
     t->start(10);

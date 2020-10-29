@@ -18,7 +18,7 @@ Player::Player(){
     this->timerSpeed=20;
     this->shootSpeed=100;
     this->setPos(width/2-size/2, height-size);
-    this->enemySpeed = 300;
+    this->enemySpeed = 600;
     this->setBrush(Qt::black);
     connect(deathTimer, SIGNAL(timeout()),this, SLOT(deathSlot()));
     connect(leftTimer, SIGNAL(timeout()),this, SLOT(goLeft()));
@@ -83,7 +83,7 @@ void Player::gameOver(){
     text->setFont(QFont("times",100));
     text->setDefaultTextColor(Qt::red);
     text->setPos(60,200);
-    text->setPlainText(QString("Game Over"));
+    text->setPlainText(QString("gg unlucky"));
     this->scene()->addItem(text);
     QList<QGraphicsItem*> items= this->scene()->items();
     for(int i=0;i<items.size();i++){
