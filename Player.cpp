@@ -9,7 +9,8 @@ Player::Player(){
     int width=800,height=600;
     this->setRect(0,0,size,size);
     this->timerSpeed=20;
-    this->shootSpeed=40;
+    this->shootSpeed=100;
+    shootTimer->setSingleShot(true);
     this->setPos(width/2-size/2, height-size);
     connect(leftTimer, SIGNAL(timeout()),this, SLOT(goLeft()));
     connect(rightTimer, SIGNAL(timeout()),this, SLOT(goRight()));
@@ -23,8 +24,10 @@ void Player::keyPressEvent(QKeyEvent *event){
     if(event->key()==Qt::Key_Right){
        this->rightTimer->start(timerSpeed);
     }
-    if(event->key()==Qt::Key_Space){
+    if(event->key()==Qt::Key_Space && !this->shootTimer->isActive()){
         shoot();
+        this->shootTimer->setSingleShot(true);
+        this->shootTimer->start(this->shootSpeed);
     }
 }
 
