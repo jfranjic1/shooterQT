@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QGraphicsRectItem>
 #include <QTimer>
+#include <Player.h>
 class Bullet: public QObject,public QGraphicsRectItem{
    Q_OBJECT
 private:

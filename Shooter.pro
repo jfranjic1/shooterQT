@@ -17,12 +17,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Bullet.cpp \
+    Enemy.cpp \
     Player.cpp \
-    main.cpp
+    main.cpp \
+    randomnumbergod.cpp
 
 HEADERS += \
     Bullet.h \
-    Player.h
+    Enemy.h \
+    Player.h \
+    randomnumbergod.h
 
 FORMS += \
     mainwindow.ui
